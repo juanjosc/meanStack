@@ -1,0 +1,21 @@
+<p>user-list works!</p>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">Nombre</th>
+      <th scope="col">Email</th>
+      <th scope="col">Opciones</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let item of users">
+      <td>{{item.nombre}}</td>
+      <td>{{item.email}}</td>
+      <td>
+        <button class="btn btn-warning">Editar</button>
+        <button class="btn btn-danger">Borrar</button>
+      </td>
+    </tr>
+  </tbody>
+</table>
