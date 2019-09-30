@@ -13,13 +13,17 @@ apUser.get('/listar',userController.listar);
 
 
 apUser.post('/crear' ,userController.crear);
+//usuario hace uso de getUser que nos sirve para buscar y mostrar un usuario
+//despues usaremos update para editarlo
+apUser.get('/usuario' ,userController.getUser);
+
 apUser.put('/update' ,userController.update);
 apUser.put('/updatepassword' ,userController.updatePassword);
 
 apUser.delete('/borrar' ,userController.borrar);
 
 //Esta linea  protege todas las rutas por debajo de este comando
-apUser.use(jwtProteger.protegerRutas);
+//apUser.use(jwtProteger.protegerRutas);
 
 module.exports = apUser;
 

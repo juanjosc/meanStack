@@ -169,6 +169,24 @@ function login(req, res){
     });
 }
 
+function getUser(req, res){
+    let id = req.query.id;
+    //password: 0 nos sirve para que no muestre a contraseña (con 1 lo mostraria)
+    //la contraseña va por otra ruta por seguridad
+    user.findOne({_id: id},{password: 0},function(error, respuestUser){
+        if(error){
+            //Este error se activa si la app o la bbdd revienta
+            return res.status(400).json({'error': error, 'message': 'no se pueden encontrar al usuario'});
+        }
+        if(respuestUser){
+            return res.status(200).json({'message': 'usuario encontrado', 'usuarios' : respuestUser});
+        } else {
+            //Nos devuelve error si la lista no contiene usuarios
+            return res.status(400).json({'error': 'no se ha encontrado al usuario/no hay usuarios'});
+        }
+    }); 
+
+}                           
 
 module.exports = {
     listar,
@@ -176,5 +194,6 @@ module.exports = {
     update,
     updatePassword,
     borrar,
-    login
+    login,
+    getUser
 };

@@ -1,1 +1,88 @@
 <p>user-edit works!</p>
+  <!-- El metodo/funcion onSubmit(), que hemos declarado en la cabeza de form activa El button con formularios form,
+     esta diseñado para que cuando se le de a enviar.
+    keydown.enter = previene que se envie auqnue le demos al boton enter-->
+<form [formGroup]="createForm" (ngSubmit)="onSubmit()" (keydown.enter)="$event.preventDefault()"
+  style="margin-bottom: 50px;">
+  <div class="form-group">
+    <label for="nombre">Nombre</label>
+    <!-- formControlName="nombre" hace referencia al nombre del nuevo formulario de FormControl del ts
+         formControlName= al igual en ngModel sirve para validar y es mas directo  -->
+    <input type="text" formControlName="nombre" class="form-control" id="nombre" aria-describedby="nombre"
+      placeholder="Añade un nombre">
+    <div
+      *ngIf="createForm.get('nombre').invalid && (createForm.get('nombre').dirty || createForm.get('nombre').touched)"
+      class="alert alert-danger">
+
+      <div *ngIf="createForm.get('nombre').getError('required')">
+        nombre is required.
+      </div>
+      <div *ngIf="createForm.get('nombre').getError('minlength')">
+        nombre must be at least 4 characters long.
+      </div>
+
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="email">Email</label>
+    <input type="text" formControlName="email" class="form-control" id="email" aria-describedby="email"
+      placeholder="Añade un email">
+    <div *ngIf="createForm.get('email').invalid && (createForm.get('email').dirty || createForm.get('email').touched)"
+      class="alert alert-danger">
+
+      <div *ngIf="createForm.get('email').getError('required')">
+        email is required.
+      </div>
+      <div *ngIf="createForm.get('email').getError('email')">
+        email formato incorrecto.
+      </div>
+
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="email">Password</label>
+    <input type="text" formControlName="password" class="form-control" id="password" aria-describedby="password"
+      placeholder="Añade un password">
+    <div
+      *ngIf="createForm.get('password').invalid && (createForm.get('password').dirty || createForm.get('password').touched)"
+      class="alert alert-danger">
+
+      <div *ngIf="createForm.get('password').getError('required')">
+        password is required.
+      </div>
+      <div *ngIf="createForm.get('password').getError('minlength')">
+        password formato incorrecto.
+      </div>
+
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="email">Role</label>
+    <input type="text" formControlName="role" class="form-control" id="role" aria-describedby="role"
+      placeholder="Añade un role">
+    <div *ngIf="createForm.get('role').invalid && (createForm.get('role').dirty || createForm.get('role').touched)"
+      class="alert alert-danger">
+
+      <div *ngIf="createForm.get('role').getError('required')">
+        role is required.
+      </div>
+      <div *ngIf="createForm.get('role').getError('role')">
+        role formato incorrecto.
+      </div>
+
+    </div>
+  </div>
+  <!-- El button con formularios form, esta diseñado para que cuando se le de a enviar
+   se active el metodo/funcion onSubmit(), que hemos declarado en la cabeza de form-->
+  <button class="btn btn-success" [disabled]='createForm.invalid'>Enviar</button>
+</form>
+
+<div *ngIf="create"
+class="alert alert-success" role="alert">
+    usuario actualizado con éxito
+</div>
+
+<div *ngIf="errores" class="alert alert-warning" role="alert">
+  <h2>ERRORES</h2>
+  <p>{{message}}</p>
+</div>
