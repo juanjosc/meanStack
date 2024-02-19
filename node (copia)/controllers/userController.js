@@ -88,6 +88,7 @@ function update(req,res){
     
 }
 
+// Update user password
 function updatePassword(req,res){
     let id = req.query.id;
     const password = req.body.password;
