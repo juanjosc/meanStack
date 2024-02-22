@@ -16,6 +16,7 @@ function listar(req,res){
 
 }
 
+// Create new user
 function crear(req,res){
    // return res.status(200).json({'datos': req.body.user});
     const usuario = req.body.user;
