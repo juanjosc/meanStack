@@ -3,6 +3,7 @@ const bcrypt = require('bcrypt');
 const saltRounds = 10;
 const jwtToken = require('../helpers/jwtHelper');
 
+//User list
 function listar(req,res){
 
     user.find({},function(error, respuestUser){
@@ -16,6 +17,7 @@ function listar(req,res){
 
 }
 
+// Create new user
 function crear(req,res){
    // return res.status(200).json({'datos': req.body.user});
     const usuario = req.body.user;
